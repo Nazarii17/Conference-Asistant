@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+/* DTO for topic */
 public class TopicDto {
 
     private long id;
