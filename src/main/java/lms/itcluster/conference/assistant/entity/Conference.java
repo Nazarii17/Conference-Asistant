@@ -25,6 +25,8 @@ public class Conference {
     @NotNull
     @NotBlank(message = "Please fill the name!")
     private String name;
+    @Column(name = "logo")
+    private String logo;
     @Column(name = "date")
     private Date date;
     @Column(name = "venue", nullable = false)
