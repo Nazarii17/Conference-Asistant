@@ -1,7 +1,7 @@
 package lms.itcluster.conference.assistant.entity;
 
+import lms.itcluster.conference.assistant.constant.ValidationConstants;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,7 +23,7 @@ public class Conference {
     private Long id;
     @Column(name = "name", unique = true, nullable = false)
     @NotNull
-    @NotBlank(message = "Please fill the name!")
+    @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_NAME)
     private String name;
     @Column(name = "logo")
     private String logo;
@@ -31,11 +31,14 @@ public class Conference {
     private Date date;
     @Column(name = "venue", nullable = false)
     @NotNull
-    @NotBlank(message = "Please fill the Venue!")
+    @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_VENUE)
     private String venue;
-    @Column(name = "description", length = 2048)
+    @Column(name = "description", length = ValidationConstants.CONFERENCE_DESCRIPTION_MAX_LENGTH)
     @NotNull
-    @NotBlank(message = "Please fill the Description!")
-    @Size(max = 2048, message = "Description is to long!")
+    @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_DESCRIPTION)
+    @Size(
+            min = ValidationConstants.CONFERENCE_DESCRIPTION_MIN_LENGTH,
+            max = ValidationConstants.CONFERENCE_DESCRIPTION_MAX_LENGTH,
+            message = ValidationConstants.CONFERENCE_DESCRIPTION_MAX_SIZE)
     private String description;
 }
