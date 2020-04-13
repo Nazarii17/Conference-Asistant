@@ -22,7 +22,7 @@ public class Guest {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "email", unique = true, nullable = false)
+    @JoinColumn(name = "email", unique = true, nullable = false)
     @NotNull
     @NotBlank(message = "Please fill the email")
     private String email;

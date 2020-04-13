@@ -22,19 +22,19 @@ public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "name", unique = true, nullable = false)
+    @JoinColumn(name = "name", unique = true, nullable = false)
     @NotNull
     @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_NAME)
     private String name;
-    @Column(name = "logo")
+    @JoinColumn(name = "logo")
     private String logo;
-    @Column(name = "date")
+    @JoinColumn(name = "date")
     private Date date;
-    @Column(name = "venue", nullable = false)
+    @JoinColumn(name = "venue", nullable = false)
     @NotNull
     @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_VENUE)
     private String venue;
-    @Column(name = "description", length = ValidationConstants.CONFERENCE_DESCRIPTION_MAX_LENGTH)
+    @JoinColumn(name = "description")
     @NotNull
     @NotBlank(message = ValidationConstants.CONFERENCE_EMPTY_DESCRIPTION)
     @Size(

@@ -20,12 +20,12 @@ public class Topic {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "title", unique = true, nullable = false)
+    @JoinColumn(name = "title", unique = true, nullable = false)
     @NotNull
     @NotBlank(message = "Please fill the title")
     private String title;
     private String speaker;
-    @Column(name = "annotation", unique = true, nullable = false)
+    @JoinColumn(name = "annotation", nullable = false)
     @NotNull
     @NotBlank(message = "Please fill the annotation")
     private String annotation;

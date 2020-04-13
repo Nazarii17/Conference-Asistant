@@ -25,17 +25,17 @@ public class Question {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "body", unique = true, nullable = false)
+    @JoinColumn(name = "body", unique = true, nullable = false)
     private String body;
 
     @ManyToOne
-    @Column(name = "author", unique = true, nullable = false)
+    @JoinColumn(name = "author", nullable = false)
     @NotNull
     @NotBlank(message = "Please fill the author")
     private Guest author;
 
     @ManyToOne
-    @Column(name = "topic", unique = true, nullable = false)
+    @JoinColumn(name = "topic", nullable = false)
     @NotNull
     @NotBlank(message = "Please fill the topic name")
     private Topic topic;
