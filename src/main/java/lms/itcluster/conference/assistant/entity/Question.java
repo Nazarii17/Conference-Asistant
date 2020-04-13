@@ -1,24 +1,43 @@
 package lms.itcluster.conference.assistant.entity;
 
+import lms.itcluster.conference.assistant.constant.ValidationConstants;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.Set;
 
+import static lms.itcluster.conference.assistant.constant.ValidationConstants.CONFERENCE_DESCRIPTION_MAX_LENGTH;
+
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "question")
+
 public class Question {
 
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name = "body", unique = true, nullable = false)
     private String body;
 
     @ManyToOne
+    @Column(name = "author", unique = true, nullable = false)
+    @NotNull
+    @NotBlank(message = "Please fill the author")
     private Guest author;
 
     @ManyToOne
+    @Column(name = "topic", unique = true, nullable = false)
+    @NotNull
+    @NotBlank(message = "Please fill the topic name")
     private Topic topic;
 
     @ManyToMany(cascade = CascadeType.REFRESH)

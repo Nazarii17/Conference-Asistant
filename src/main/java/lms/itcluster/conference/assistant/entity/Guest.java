@@ -1,22 +1,30 @@
 package lms.itcluster.conference.assistant.entity;
 
+import lms.itcluster.conference.assistant.constant.ValidationConstants;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "guest")
+
 public class Guest {
 
     @Id
     @GeneratedValue
     private Long id;
-
+    @Column(name = "email", unique = true, nullable = false)
+    @NotNull
+    @NotBlank(message = "Please fill the email")
     private String email;
 
     @ManyToMany(mappedBy = "likes")
