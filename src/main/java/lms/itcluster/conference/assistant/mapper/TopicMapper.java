@@ -1,8 +1,8 @@
 package lms.itcluster.conference.assistant.mapper;
 
-import lms.itcluster.conference.assistant.dto.TopicDto;
 import lms.itcluster.conference.assistant.entity.Conference;
 import lms.itcluster.conference.assistant.entity.Topic;
+import lms.itcluster.conference.assistant.dto.TopicDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +26,7 @@ public class TopicMapper {
         return t;
     }
 
-    public static List<TopicDto> toDtoList(List<Topic> entities) {
+    public static List<TopicDto> toDtos(List<Topic> entities) {
         return entities
                 .stream()
                 .map((e) -> new TopicDto(e.getId(), e.getTitle(), e.getSpeaker(), e.getAnnotation(),
@@ -34,7 +34,7 @@ public class TopicMapper {
                 .collect(Collectors.toList());
     }
 
-    public static List<Topic> toEntityList(List<TopicDto> dtos) {
+    public static List<Topic> fromDtos(List<TopicDto> dtos) {
         return dtos
                 .stream()
                 .map(TopicMapper::fromDto)

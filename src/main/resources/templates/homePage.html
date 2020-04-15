@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conferences</title>
+</head>
+
+<body>
+<div th:insert="base-layout :: header"></div>
+<h2>Conference List</h2>
+<div th:each="c : ${confs}">
+    <a th:href="@{'/conference/' + ${c.id}}">
+        <span th:text="${c.name}">Conference name</span>
+    </a>
+    <span th:text="${c.date}">Conference Date</span>
+    <span th:text="${c.getDescription()}">Conference Description</span>
+</div>
+<div th:insert="base-layout :: footer"></div>
+</body>
+</html>

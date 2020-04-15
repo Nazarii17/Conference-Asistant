@@ -48,15 +48,15 @@ public class QuestionServiceImpl implements QuestionService {
                 .findByTopicId(topicId)
                 .stream()
                 .map((e) -> {
-                    Set<Guest> likes = e.getLikes();
-            return QuestionMapper.toDto(e, e.getLikes().contains(guest), likes.size());
-        }
-        ).collect(Collectors.toList());
+                            Set<Guest> likes = e.getLikes();
+                            return QuestionMapper.toDto(e, e.getLikes().contains(guest), likes.size());
+                        }
+                ).collect(Collectors.toList());
     }
 
     @Override
     public QuestionDto addQuestion(QuestionDto dto) {
-        Question question = QuestionMapper.toEntity(dto);
+        Question question = QuestionMapper.fromDto(dto);
         Topic t = topicRepository.findById(dto.getTopicId()).get();
         question.setTopic(t);
         Guest author = guestRepository.findById(dto.getAuthorId()).get();
@@ -65,4 +65,14 @@ public class QuestionServiceImpl implements QuestionService {
 
         return QuestionMapper.toDto(questionRepository.save(question), true, question.getLikes().size());
     }
+
+    @Override
+    public QuestionDto like(long questionId, long guestId) {
+        Guest guest = guestRepository.findById(guestId).get();
+        Question question = questionRepository.findById(questionId).get();
+        question.getLikes().add(guest);
+
+        return QuestionMapper.toDto(questionRepository.save(question), true, question.getLikes().size());
+    }
+
 }

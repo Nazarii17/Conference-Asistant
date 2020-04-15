@@ -13,4 +13,6 @@ public class QuestionDto {
     private Long topicId;
     Boolean isLikedByGuest;
     Integer liked;
+
+
 }
